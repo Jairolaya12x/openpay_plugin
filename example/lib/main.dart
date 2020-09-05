@@ -21,6 +21,9 @@ class _MyAppState extends State<MyApp> {
 
   String _creditCardToken = 'Unknown';
 
+  bool _openPayInitialized = false;
+
+
   final textEditingController = TextEditingController();
   final textEditingControllerCard = TextEditingController();
 
@@ -33,7 +36,7 @@ class _MyAppState extends State<MyApp> {
     String deviceId;
 
     try {
-      deviceId = await OpenpayPlugin.deviceSessionId;
+      deviceId = await OpenpayPlugin.deviceSessionId.catchError((error) => print(error));
     } on PlatformException {
       return 'Failed to get the device session id';
     }
@@ -42,6 +45,15 @@ class _MyAppState extends State<MyApp> {
       textEditingController.text = deviceId;
       _deviceSessionId = deviceId;
     });
+  }
+
+  Future<bool> initialize() async {
+    try {
+      await OpenpayPlugin.initialize("mefqzcuuaggtdn6cq4jh", "pk_2f732686521c48c8a81aec2b2868b001", false);
+      return true;
+    } on PlatformException {
+      return false;
+    }
   }
 
   Future<void> createToken() async {
@@ -64,13 +76,26 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
+            SizedBox(height: 20,),
+            RaisedButton.icon(
+              onPressed: () async {
+                  _openPayInitialized = await initialize();
+                  setState(() {
+                    
+                  });
+              },
+              icon: Icon(Icons.phone_android),
+              label: Text('Initialize OpenPay'),
+            ),
+            Text("OpenPay Status: ${_openPayInitialized.toString()}"),
+            Divider(),
             Center(
               child: Text('Running on: $_platformVersion\n'),
             ),
             RaisedButton.icon(
               onPressed: () => getDeviceId(),
               icon: Icon(Icons.phone_android),
-              label: Text('Get device token'),
+              label: Text('Get device id'),
             ),
             TextField(
               controller: textEditingController,
@@ -78,7 +103,7 @@ class _MyAppState extends State<MyApp> {
             RaisedButton.icon(
               onPressed: () => createToken(),
               icon: Icon(Icons.credit_card),
-              label: Text('Get device token'),
+              label: Text('Get card token'),
             ),
             SizedBox(height: 10,),
             TextField(

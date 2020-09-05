@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - openpay_plugin (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - openpay_plugin (from `.symlinks/plugins/openpay_plugin/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  openpay_plugin:
+    :path: ".symlinks/plugins/openpay_plugin/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  openpay_plugin: 2a34d857bf35a0530483cf05bfc333427e6a13a3
+
+PODFILE CHECKSUM: 8be3e4f69a04c77e3c76387c6b3be3a5bf130348
+
+COCOAPODS: 1.8.4

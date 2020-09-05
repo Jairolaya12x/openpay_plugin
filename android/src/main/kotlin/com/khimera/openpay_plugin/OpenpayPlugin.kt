@@ -33,9 +33,9 @@ public class OpenpayPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
 
   private var activity : Activity? = null
 
-  fun initialize(merchantId : String, apiKey : String, productionMode: Boolean){
-    openpay = Openpay(merchantId,apiKey, productionMode)
-  }
+  private var initialized : Boolean = false
+
+
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "openpay_plugin")
@@ -62,10 +62,7 @@ public class OpenpayPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
 
     when (call.method) {
       "initialize" -> {
-        val merchantId : String = call.argument("merchantId")!!
-        val apiKey : String = call.argument("apiKey")!!
-        val productionMode : Boolean = call.argument("productionMode")!!
-        initialize(merchantId,apiKey,productionMode)
+        result.success(initialize(call))
       }
 
       "getDeviceSessionId" -> {
@@ -148,5 +145,14 @@ public class OpenpayPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
 
   override fun onDetachedFromActivityForConfigChanges() {
     onDetachedFromActivity()
+  }
+
+  private fun initialize(call: MethodCall) : Boolean {
+    val merchantId : String = call.argument("merchantId")!!
+    val apiKey : String = call.argument("apiKey")!!
+    val productionMode : Boolean = call.argument("productionMode")!!
+    this.openpay = Openpay(merchantId, apiKey, productionMode)
+    this.initialized = true
+    return true
   }
 }

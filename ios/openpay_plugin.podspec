@@ -17,9 +17,8 @@ A new flutter plugin project.
   s.dependency 'Flutter'
   s.platform = :ios, '10.3'
   s.frameworks = 'Openpay'
+  s.ios.deployment_target = '10.3'
 
-  # Flutter.framework does not contain a i386 slice. Only x86_64 simulators are supported.
-  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'VALID_ARCHS[sdk=iphonesimulator*]' => 'x86_64' }
   s.swift_version = '5.0'
 
   s.preserve_paths = 'Openpay.framework'

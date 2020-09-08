@@ -24,7 +24,7 @@ class OpenpayPlugin {
     final String creditCardToken = await _channel
         .invokeMethod(
           'createToken',
-          creditCard.toJson(),
+          creditCard?.toJson() ?? null,
         )
         .catchError(
           (error) => throw error,

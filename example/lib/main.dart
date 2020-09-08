@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
   Future<void> createToken() async {
     String _token;
     final _creditCard = CreditCard('Jairo Olaya', '4111111111111111', 12, 21, '123');
-    _token = await OpenpayPlugin.createToken(_creditCard).catchError((error) => throw error);
+    _token = await OpenpayPlugin.createToken(null).catchError((error) => throw error);
     setState(() {
       textEditingControllerCard.text = _token;
     });

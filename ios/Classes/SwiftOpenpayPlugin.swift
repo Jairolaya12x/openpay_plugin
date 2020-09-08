@@ -70,7 +70,7 @@ public class SwiftOpenpayPlugin: NSObject, FlutterPlugin {
             self.openpay.createTokenWithCard(address: nil, successFunction: { (token) in
                 result(token.id)
             }) { (error) in
-                result(FlutterError(code: "CreateTokenError", message: "The token can't be created", details: nil))
+                result(FlutterError(code: "CreateTokenError", message: "The token can't be created \(error.localizedDescription) -- \(error.code)", details: nil))
             }
         }, failureFunction: { (error) in
             result(FlutterError(code: "FormError", message: "Can't load the form", details: nil))

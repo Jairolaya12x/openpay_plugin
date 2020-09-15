@@ -21,10 +21,8 @@ A new flutter plugin project.
 
   s.swift_version = '5.0'
 
-  s.ios.preserve_path = 'IMPORTANT.txt'
 
   s.preserve_paths = 'Openpay.framework'
-  s.ios.preserve_paths = 
   s.xcconfig = { 'OTHER_LDFLAGS' => '-framework Openpay' }
   s.ios.vendored_frameworks = 'Frameworks/Openpay.framework'
 end

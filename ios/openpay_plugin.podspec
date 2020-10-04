@@ -15,9 +15,9 @@ A new flutter plugin project.
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.platform = :ios, '10.3'
+  s.platform = :ios, '12.0'
   s.frameworks = 'Openpay'
-  s.ios.deployment_target = '10.3'
+  s.ios.deployment_target = '12.0'
 
   s.swift_version = '5.0'
 

@@ -19,7 +19,7 @@ A new flutter plugin project.
   s.frameworks = 'Openpay'
   s.ios.deployment_target = '12.0'
 
-  s.swift_version = '5.0'
+  s.swift_version = '5.3.2'
 
 
   s.preserve_paths = 'Openpay.framework'
